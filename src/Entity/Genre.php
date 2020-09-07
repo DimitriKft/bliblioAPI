@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\GenreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Livre;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GenreRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
@@ -13,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Genre
 {
     /**
+     * @Groups({"listGenreSimple", "listGenreFull"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,6 +23,7 @@ class Genre
     private $id;
 
     /**
+     * @Groups({"listGenreSimple", "listGenreFull"})
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;

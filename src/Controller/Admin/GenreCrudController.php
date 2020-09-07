@@ -12,7 +12,7 @@ class GenreCrudController extends AbstractCrudController
         return Genre::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -21,5 +21,5 @@ class GenreCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    */
+    
 }
