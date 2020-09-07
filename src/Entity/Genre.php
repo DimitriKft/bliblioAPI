@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AuteurRepository;
+use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AuteurRepository::class)
+ * @ORM\Entity(repositoryClass=GenreRepository::class)
  */
-class Auteur
+class Genre
 {
     /**
      * @ORM\Id
@@ -22,21 +22,10 @@ class Auteur
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $libelle;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Nationalite::class, inversedBy="auteurs")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $nationalité;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="auteur")
+     * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="genre")
      */
     private $livres;
 
@@ -50,38 +39,14 @@ class Auteur
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->nom;
+        return $this->libelle;
     }
 
-    public function setNom(string $nom): self
+    public function setLibelle(string $libelle): self
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getNationalité(): ?Nationalite
-    {
-        return $this->nationalité;
-    }
-
-    public function setNationalité(?Nationalite $nationalité): self
-    {
-        $this->nationalité = $nationalité;
+        $this->libelle = $libelle;
 
         return $this;
     }
@@ -98,7 +63,7 @@ class Auteur
     {
         if (!$this->livres->contains($livre)) {
             $this->livres[] = $livre;
-            $livre->setAuteur($this);
+            $livre->setGenre($this);
         }
 
         return $this;
@@ -109,8 +74,8 @@ class Auteur
         if ($this->livres->contains($livre)) {
             $this->livres->removeElement($livre);
             // set the owning side to null (unless already changed)
-            if ($livre->getAuteur() === $this) {
-                $livre->setAuteur(null);
+            if ($livre->getGenre() === $this) {
+                $livre->setGenre(null);
             }
         }
 
