@@ -12,14 +12,14 @@ class EditeurCrudController extends AbstractCrudController
         return Editeur::class;
     }
 
-    /*
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
-    }
-    */
+    
+    // public function configureFields(string $pageName): iterable
+    // {
+    //     return [
+    //         IdField::new('id'),
+    //         TextField::new('title'),
+    //         TextEditorField::new('description'),
+    //     ];
+    // }
+    
 }

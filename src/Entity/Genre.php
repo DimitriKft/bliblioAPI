@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Genre
 {
     /**
-     * @Groups({"listGenreSimple", "listGenreFull"})
+     * @Groups({"listGenreSimple","listGenreFull"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -23,13 +23,14 @@ class Genre
     private $id;
 
     /**
-     * @Groups({"listGenreSimple", "listGenreFull"})
+     * @Groups({"listGenreSimple","listGenreFull"})
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;
 
     /**
      * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="genre")
+     * @Groups({"listGenreFull"})
      */
     private $livres;
 
