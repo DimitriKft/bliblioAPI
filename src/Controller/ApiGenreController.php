@@ -64,7 +64,10 @@ class ApiGenreController extends AbstractController
         return new JsonResponse(
             "Le genre a bien été créé",
             Response::HTTP_CREATED,[
-            "location"=> "/api/genres/" . $genre->getId()],
+            "location"=>  $this->generateUrl(
+            'api_genres_show',
+            ["id"=> $genre->getId()],
+             UrlGeneratorInterface::ABSOLUTE_URL)],
             true);
         // ["location"=> $this->generateUrl('api_genres_show', ["id"=> $genre->getId(), UrlGeneratorInterface::ABSOLUTE_URL])];
     }
