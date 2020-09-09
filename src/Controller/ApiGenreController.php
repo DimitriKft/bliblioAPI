@@ -54,13 +54,10 @@ class ApiGenreController extends AbstractController
     public function create(Request $request, SerializerInterface $serializer, EntityManagerInterface $manager)
     {
         $data = $request->getContent();
-        // $genre = new Genre();
-        // $serializer->deserialize($data, Genre::class, 'json', ['object_to_populate'=>$genre]);
         $genre = $serializer->deserialize($data, Genre::class, 'json');
         $manager->persist($genre);
         $manager->flush();
        
-
         return new JsonResponse(
             "Le genre a bien été créé",
             Response::HTTP_CREATED,[
@@ -68,7 +65,20 @@ class ApiGenreController extends AbstractController
             'api_genres_show',
             ["id"=> $genre->getId()],
              UrlGeneratorInterface::ABSOLUTE_URL)],
-            true);
-        // ["location"=> $this->generateUrl('api_genres_show', ["id"=> $genre->getId(), UrlGeneratorInterface::ABSOLUTE_URL])];
+            true
+        );
+    }
+
+     /**
+     * @Route("/api/genres/{id}", name="api_genres_update", methods={"PUT"})
+     */
+    public function edit(Genre $genre,Request $request, SerializerInterface $serializer, EntityManagerInterface $manager)
+    {
+        $data = $request->getContent();
+        $resultat = $serializer->deserialize($data, Genre::class, "json", ['object_to_populate' => $genre]);
+        $manager->persist($genre);
+        $manager->flush();
+
+        return new JsonResponse("Le genre à bien été modifié",Response::HTTP_OK,[],true);
     }
 }
