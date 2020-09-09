@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\LivreRepository;
 use Doctrine\ORM\Mapping as ORM;
+<<<<<<< HEAD
+=======
+use Symfony\Component\Serializer\Annotation\Groups;
+>>>>>>> dev
 
 /**
  * @ORM\Entity(repositoryClass=LivreRepository::class)
@@ -19,16 +23,28 @@ class Livre
 
     /**
      * @ORM\Column(type="string", length=255)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $isbn;
 
     /**
      * @ORM\Column(type="string", length=255)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $titre;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $prix;
 
@@ -41,22 +57,38 @@ class Livre
     /**
      * @ORM\ManyToOne(targetEntity=Editeur::class, inversedBy="livres")
      * @ORM\JoinColumn(nullable=false)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $editeur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Auteur::class, inversedBy="livres")
      * @ORM\JoinColumn(nullable=false)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $auteur;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $annee;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $langue;
 

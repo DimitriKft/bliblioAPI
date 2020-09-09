@@ -2,10 +2,19 @@
 
 namespace App\Entity;
 
+<<<<<<< HEAD
 use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+=======
+use App\Entity\Livre;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GenreRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+>>>>>>> dev
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
@@ -13,6 +22,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Genre
 {
     /**
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreSimple","listGenreFull"})
+>>>>>>> dev
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,12 +33,20 @@ class Genre
     private $id;
 
     /**
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreSimple","listGenreFull"})
+>>>>>>> dev
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;
 
     /**
      * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="genre")
+<<<<<<< HEAD
+=======
+     * @Groups({"listGenreFull"})
+>>>>>>> dev
      */
     private $livres;
 
