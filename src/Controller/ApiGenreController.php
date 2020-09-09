@@ -72,7 +72,7 @@ class ApiGenreController extends AbstractController
      /**
      * @Route("/api/genres/{id}", name="api_genres_update", methods={"PUT"})
      */
-    public function edit(Genre $genre,Request $request, SerializerInterface $serializer, EntityManagerInterface $manager)
+    public function update(Genre $genre,Request $request, SerializerInterface $serializer, EntityManagerInterface $manager)
     {
         $data = $request->getContent();
         $resultat = $serializer->deserialize($data, Genre::class, "json", ['object_to_populate' => $genre]);
@@ -80,5 +80,17 @@ class ApiGenreController extends AbstractController
         $manager->flush();
 
         return new JsonResponse("Le genre à bien été modifié",Response::HTTP_OK,[],true);
+    }
+
+     /**
+     * @Route("/api/genres/{id}", name="api_genres_delete", methods={"DELETE"})
+     */
+    public function delete(Genre $genre, EntityManagerInterface $manager)
+    {
+        
+        $manager->remove($genre);
+        $manager->flush();
+
+        return new JsonResponse("Le genre à bien été supprimé",Response::HTTP_OK,[],false);
     }
 }
