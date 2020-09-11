@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Auteur;
 use App\Repository\AuteurRepository;
 use App\Repository\NationaliteRepository;
