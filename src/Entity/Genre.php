@@ -8,18 +8,26 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Livre;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
+ * @ApiResource(
+ *      attributes = {
+ *          "order" = {
+ *              "libelle":"ASC"
+ *          }
+ *      }
+ * )
  * @UniqueEntity(
  *      fields = {"libelle"},
  *      message = "Il éxiste déja un genre avec le libellé {{ value }}, veuillez saisir un autre libellé.");
@@ -27,7 +35,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Genre
 {
     /**
-     * @Groups({"listGenreSimple","listGenreFull"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -35,7 +42,6 @@ class Genre
     private $id;
 
     /**
-     * @Groups({"listGenreSimple","listGenreFull"})
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *      min = 2,
@@ -48,7 +54,7 @@ class Genre
 
     /**
      * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="genre")
-     * @Groups({"listGenreFull"})
+     * @ApiSubresource
      */
     private $livres;
 

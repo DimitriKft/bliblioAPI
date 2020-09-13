@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\EditeurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EditeurRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EditeurRepository::class)
+ * @ApiResource()
  */
 class Editeur
 {
@@ -22,8 +24,11 @@ class Editeur
 
     /**
      * @ORM\Column(type="string", length=255)
+<<<<<<< HEAD
      * @Groups({"listGenreFull"})
      * @Groups({"listGenreFull", "listAuteurFull"})
+=======
+>>>>>>> dev
      */
     private $nom;
 
