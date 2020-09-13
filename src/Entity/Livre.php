@@ -19,7 +19,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *          "order" = {
  *              "titre":"ASC",
  *              "prix":"DESC"
- *          }
+ *          },
+ *          "pagination_items_per_page"=30
  *      }
  * )
  * @ApiFilter(
