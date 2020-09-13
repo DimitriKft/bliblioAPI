@@ -7,6 +7,7 @@ use App\Repository\LivreRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
@@ -31,6 +32,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *      RangeFilter::class,
  *      properties = {
  *          "prix"
+ *      }
+ * )
+ *  @ApiFilter(
+ *      OrderFilter::class,
+ *      properties = {
+ *          "titre",
+ *          "prix",
+ *          "auteur.nom"
  *      }
  * )
  */
