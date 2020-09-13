@@ -4,12 +4,28 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LivreRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=LivreRepository::class)
- * @ApiResource()
+* @ApiResource(
+ *      attributes = {
+ *          "order" = {
+ *              "titre":"ASC",
+ *              "prix":"DESC"
+ *          }
+ *      }
+ * )
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties = {
+ *          "titre": "ipartial",
+ *          "auteur": "exact"
+ *      }
+ * )
  */
 class Livre
 {
@@ -22,52 +38,44 @@ class Livre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"listGenreFull", "listAuteurFull"})
      */
     private $isbn;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"listGenreFull", "listAuteurFull"})
      */
     private $titre;
 
     /**
      * @ORM\Column(type="float", nullable=true)
-     * @Groups({"listGenreFull", "listAuteurFull"})
      */
     private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="livres")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"listAuteurFull"})
      */
     private $genre;
 
     /**
      * @ORM\ManyToOne(targetEntity=Editeur::class, inversedBy="livres")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"listGenreFull", "listAuteurFull"})
      */
     private $editeur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Auteur::class, inversedBy="livres")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"listGenreFull"})
      */
     private $auteur;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"listGenreFull", "listAuteurFull"})
      */
     private $annee;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"listGenreFull", "listAuteurFull"})
      */
     private $langue;
 
